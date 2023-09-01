@@ -1,20 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title style="font-size: 18px; padding: 0px" class="ion-text-center">
+      @awesome-cordova-plugins/health-kit
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p style="text-align: right; margin-right: 15px; margin-top: 10px">
+      
+    </p>
+
+    <ion-list>
+      <ion-item button (click)="getWeight()">
+        <ion-icon name="accessibility" slot="start" color="success"></ion-icon>
+        <ion-label>Weight</ion-label>
+        <ion-label slot="end">{{myWeight}}</ion-label>
+      </ion-item>
+
+      <ion-item button (click)="getHeight()">
+        <ion-icon name="body-outline" slot="start" color="warning"></ion-icon>
+        <ion-label>Height</ion-label>
+        <ion-label slot="end">{{myHeight}}</ion-label>
+      </ion-item>
+
+      <ion-item button (click)="getGender()">
+        <ion-icon name="people" slot="start" color="danger"></ion-icon>
+        <ion-label>Gender</ion-label>
+        <ion-label slot="end" class="ion-text-capitalize">{{myGender}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Total</ion-label>
+        <ion-label slot="end">{{counter}}</ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let item of steps">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>{{item.startDate|date}}</ion-label>
+        {{item.quantity}}
+        <ion-icon
+          name="footsteps-outline"
+          slot="end"
+          style="margin-left: 10px"
+        ></ion-icon>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
